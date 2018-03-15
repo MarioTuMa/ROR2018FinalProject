@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Colleges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Private</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @colleges.each do |college| %>
+      <tr>
+        <td><%= college.name %></td>
+        <td><%= college.private %></td>
+        <td><%= link_to 'Show', college %></td>
+        <td><%= link_to 'Edit', edit_college_path(college) %></td>
+        <td><%= link_to 'Destroy', college, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Import</h4>
+  <%= form_tag import_colleges_path, multipart: true do %>
+    <%=file_field_tag :file %>
+    <%=submit_tag "import csv" %>
+  <%end%>
+<br>
+
+<%= link_to 'New College', new_college_path %>
